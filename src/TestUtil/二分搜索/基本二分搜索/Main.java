@@ -2,6 +2,7 @@ package TestUtil.二分搜索.基本二分搜索;
 
 public class Main {
     public static void main(String[] args) {
+        System.out.println(123);
         System.out.println(binarySearch(new int[]{0, 1,4, 5, 6}, -1));
     }
 
