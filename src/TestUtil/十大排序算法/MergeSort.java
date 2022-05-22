@@ -11,6 +11,7 @@ public class MergeSort {
             System.out.print(input[i]+",");
         }
     }
+
     public static void mergeSort(int[] input,int left,int right){
         if(left>=right){
             return;

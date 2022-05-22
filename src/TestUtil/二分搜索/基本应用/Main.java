@@ -2,8 +2,30 @@ package TestUtil.二分搜索.基本应用;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println(mySqrt3(11));
+        System.out.println(mySqrt4(10));
     }
+    public static double mySqrt4(double x) {
+        double left=0;
+        double right=x;
+        double mid=-1;
+        while(left<=right){
+            double pre=mid;
+            mid=left+(right-left)/2.0;
+            if(mid*mid==x){
+                return mid;
+            }else if(mid*mid>x){
+                right=mid;
+            }else{
+                left=mid;
+            }
+            if(pre==mid){
+                break;
+            }
+        }
+        return mid;
+    }
+
+
     /**
      * 给定一个排序数组和一个目标值，在数组中找到目标值，并返回其索引。如果目标值不存在于数组中，返回它将会被按顺序插入的位置。
      * @param nums
@@ -50,21 +72,30 @@ public class Main {
      * 给你一个非负整数 x ，计算并返回 x 的 算术平方根 。
      * 由于返回类型是小数,小数保留两位小数 。
      */
-    public static String mySqrt3(int x) {
-        float left=0;
-        float right=x;
-        while(Math.abs(right-left)>0.00001){
-            float mid=left+(right-left)/2.0f;
+    public static String mySqrt3(double x) {
+        double left=0;
+        double right=x;
+        while(left<=right){
+            System.out.println(left+":"+right);
+            double mid=left+(right-left)/2.0f;
+            System.out.println("mid:"+mid);
+            System.out.println("mid*mid"+mid*mid);
             if(mid*mid==x){
-                return String.format("%.2f", mid);
+                return mid+"";
+                //return String.format("%.2f", mid);
             }else if(mid*mid>x){
                 right=mid;
             }else{
                 left=mid;
             }
+            if(right-left<Float.MIN_VALUE){
+                break;
+            }
         }
-        return String.format("%.2f",right);
+        return right+"";
+        //return String.format("%.2f",right);
     }
+
 
     /*
         852.山脉数组的封顶索引
