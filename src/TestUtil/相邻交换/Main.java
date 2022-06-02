@@ -14,7 +14,6 @@ public class Main {
         小美老师要求任意座位相邻的两人之间使用的语言是不同的。
         小美每次可以交换相邻两人的位置，现在她想知道最少交换多少次可以满足要求？
      */
-
     public static int exchange(String input){
         char[] chars = input.toCharArray();
         int C_num=0;

@@ -1,4 +1,4 @@
-package TestUtil.图.广度搜索遍历;
+package TestUtil.图论.图.最短距离.迪杰斯特拉.邻接表;
 
 import java.util.*;
 /*
@@ -11,12 +11,12 @@ import java.util.*;
     4 1 2
  */
 /**
- * 迪杰斯特拉求任意两点之间的最短距离
+ * 迪杰斯特拉求指定两点之间的最短距离
  */
-class State{
+class Node{
     int id;
     int distFromStart;
-    public State(int id,int distFromStart){
+    public Node(int id,int distFromStart){
         this.id=id;
         this.distFromStart=distFromStart;
     }
@@ -37,7 +37,8 @@ class State{
         this.distFromStart = distFromStart;
     }
 }
-public class startToAnyOneDist {
+public class startToEndDist {
+
     public static void main(String[] args) {
         Scanner sc=new Scanner(System.in);
         int v=sc.nextInt();
@@ -52,24 +53,24 @@ public class startToAnyOneDist {
             int w=sc.nextInt();
             graph[from].add(new int[]{to,w});
         }
-
-        int[] disTo = dijkstra(0, graph);
-        for (int i = 0; i < disTo.length; i++) {
-            System.out.println(0+"->"+i+":"+disTo[i]);
-        }
+        int disTo = dijkstra(0, 5,graph);
+        System.out.println("0->5:"+disTo);
     }
-    public static int[] dijkstra(int start,List<int[]>[] graph){
-        Queue<State> que=new PriorityQueue<>((a,b)->{
+    public static int dijkstra(int start,int end,List<int[]>[] graph){
+        Queue<Node> que=new PriorityQueue<>((a,b)->{
             return a.distFromStart-b.distFromStart;
         });
         int[] distTo=new int[graph.length];
         Arrays.fill(distTo, Integer.MAX_VALUE);
-        que.offer(new State(start, 0));
+        que.offer(new Node(start, 0));
         distTo[start]=0;
         while(!que.isEmpty()){
-            State curNode = que.poll();
+            Node curNode = que.poll();
             int curNodeId=curNode.getId();
             int curNodeDistFromStart=curNode.getDistFromStart();
+            if(curNodeId==end){
+                return curNodeDistFromStart;
+            }
             if(curNodeDistFromStart>distTo[curNodeId]){
                 continue;
             }
@@ -79,11 +80,11 @@ public class startToAnyOneDist {
                 int nextNodeDistFromStart=curNodeDistFromStart+nextNodeW;
                 if(nextNodeDistFromStart<distTo[nextNodeId]){
                     distTo[nextNodeId]=nextNodeDistFromStart;
-                    que.offer(new State(nextNodeId,nextNodeDistFromStart));
+                    que.offer(new Node(nextNodeId,nextNodeDistFromStart));
                 }
             }
         }
-        return distTo;
+        return -1;
 
     }
 }

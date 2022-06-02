@@ -34,26 +34,6 @@ public class Main {
         return dp[bagSize];
     }
 
-    /**
-     * 一维数组 记录路径
-     * @param weight
-     * @param value
-     * @param bagSize
-     * @return
-     */
-    public static int weightBagProblem11(int[] weight,int[] value,int bagSize){
-        int[] dp=new int[bagSize+1];
-
-        for(int i=0;i<weight.length;++i){
-            for(int j=bagSize;j>=weight[i];--j){
-                if(dp[j]<dp[j-weight[i]]+value[i]){
-                    dp[j]=dp[j-weight[i]]+value[i];
-                }
-            }
-        }
-
-        return dp[bagSize];
-    }
 
     /**
      * 二维数组
